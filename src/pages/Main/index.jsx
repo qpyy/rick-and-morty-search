@@ -3,6 +3,7 @@ import CharacterList from "../../components/CharacterList";
 import SearchForm from "../../components/SearchForm";
 import CustomSnackbar from "../../components/UI/CustomSnackbar";
 import { getFilteredByNameService } from "../../services";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const Main = () => {
   const [characters, setCharacters] = useState([]);
@@ -21,6 +22,7 @@ const Main = () => {
     { value: "dead", label: "Мертв" },
     { value: "unknown", label: "Неизвестно" },
   ];
+  const debouncedFilters = useDebounce(filters, 500);
 
   useEffect(() => {
     const savedFilters = JSON.parse(localStorage.getItem("filters"));
@@ -32,9 +34,9 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("filters", JSON.stringify(filters));
-    fetchCharacters(filters);
-  }, [filters]);
+    localStorage.setItem("filters", JSON.stringify(debouncedFilters));
+    fetchCharacters(debouncedFilters);
+  }, [debouncedFilters]);
 
   const fetchCharacters = async (filters) => {
     const { name, status, species } = filters;
