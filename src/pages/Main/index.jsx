@@ -3,7 +3,7 @@ import CharacterList from "../../components/CharacterList";
 import SearchForm from "../../components/SearchForm";
 import CustomSnackbar from "../../components/UI/CustomSnackbar";
 import { getFilteredByNameService } from "../../services";
-import { useDebounce } from "./useDebounce";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const Main = () => {
   const [characters, setCharacters] = useState([]);
