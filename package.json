@@ -2,6 +2,7 @@
   "name": "rick-and-morty-search",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://qpyy.github.io/rick-and-morty-search",
   "type": "module",
   "scripts": {
     "dev": "vite",
