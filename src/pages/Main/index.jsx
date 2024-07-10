@@ -64,8 +64,12 @@ const Main = () => {
     <div className="container mx-auto p-5">
       <h1 className="text-3xl font-bold mb-4">Вселенная Рик и Морти</h1>
       <SearchForm>
+        <label className="m-2 mt-5 sm:w-1/3 justify-start" htmlFor="name-input">
+          Имя персонажа:
+        </label>
         <input
-          className="rounded-md px-3 py-2 m-2 w-full"
+          id="name-input"
+          className="bg-black rounded-md px-3 py-2 m-2 w-full"
           type="text"
           name="name"
           value={filters.name}
@@ -79,13 +83,13 @@ const Main = () => {
           </label>
           <select
             id="alive-select"
-            className="rounded-md px-3 py-2 m-2 w-full sm:w-2/3"
+            className="bg-black rounded-md px-3 py-2 m-2 w-full sm:w-2/3"
             name="status"
             value={filters.status}
             onChange={handleInputChange}
           >
             {selectOptions.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option className="bg-black" key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
@@ -96,7 +100,7 @@ const Main = () => {
           </label>
           <input
             id="input-species"
-            className="rounded-md px-3 py-2 m-2 w-full sm:w-2/3"
+            className="bg-black rounded-md px-3 py-2 m-2 w-full sm:w-2/3"
             type="text"
             name="species"
             value={filters.species}
