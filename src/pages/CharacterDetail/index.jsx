@@ -9,14 +9,14 @@ const CharacterDetail = () => {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
 
-  useEffect(() => {
-    fetchCharacter();
-  }, [id]);
-
   const fetchCharacter = async () => {
     const response = await getCharacterDetailsService(id);
     setCharacter(response);
   };
+
+  useEffect(() => {
+    fetchCharacter();
+  }, [id]);
 
   if (!character) {
     return <div className="flex justify-center items-center h-screen">Загрузка...</div>;

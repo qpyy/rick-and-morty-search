@@ -31,12 +31,16 @@ const Main = () => {
     if (savedFilters) {
       setFilters(savedFilters);
       fetchCharacters(savedFilters);
+    } else {
+      fetchCharacters(filters);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("filters", JSON.stringify(debouncedFilters));
-    fetchCharacters(debouncedFilters);
+    if (filters !== debouncedFilters) {
+      localStorage.setItem("filters", JSON.stringify(debouncedFilters));
+      fetchCharacters(debouncedFilters);
+    }
   }, [debouncedFilters]);
 
   const fetchCharacters = async (filters) => {
