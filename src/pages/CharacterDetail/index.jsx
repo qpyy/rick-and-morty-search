@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getCharacterDetailsService } from "../../services";
 import GoBackButton from "../../components/UI/GoBackButton";
 
+import { motion } from "framer-motion";
+
 const CharacterDetail = () => {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
@@ -21,8 +23,12 @@ const CharacterDetail = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <GoBackButton buttonText="НАзад" />
+    <motion.div
+      initial={{ x: 300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{}}
+      className="max-w-7xl mx-auto px-4 py-8 mt-10"
+    >
       <div className="bg-transparent border-2 border-white rounded-lg shadow-lg overflow-hidden">
         <img
           className="w-full md:h-96 object-cover object-center"
@@ -45,7 +51,8 @@ const CharacterDetail = () => {
           </div>
         </div>
       </div>
-    </div>
+      <GoBackButton buttonText="Назад" />
+    </motion.div>
   );
 };
 

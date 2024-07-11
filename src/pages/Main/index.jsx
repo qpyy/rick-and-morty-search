@@ -4,6 +4,7 @@ import SearchForm from "../../components/SearchForm";
 import CustomSnackbar from "../../components/UI/CustomSnackbar";
 import { getFilteredByNameService } from "../../services";
 import { useDebounce } from "../../hooks/useDebounce";
+import { motion } from "framer-motion";
 
 const Main = () => {
   const [characters, setCharacters] = useState([]);
@@ -63,7 +64,12 @@ const Main = () => {
   };
 
   return (
-    <div className="container mx-auto p-5">
+    <motion.div
+      initial={{ x: -300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{}}
+      className="container mx-auto p-5"
+    >
       <h1 className="text-3xl font-bold mb-4">Вселенная Рик и Морти</h1>
       <SearchForm>
         <label className="m-2 mt-5 sm:w-1/3 justify-start" htmlFor="name-input">
@@ -119,7 +125,7 @@ const Main = () => {
         autoHideDuration={2500}
         handleClose={() => handleSnackbar(false, "")}
       />
-    </div>
+    </motion.div>
   );
 };
 
