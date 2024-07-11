@@ -26,16 +26,17 @@ const Main = () => {
   const debouncedFilters = useDebounce(filters, 500);
 
   useEffect(() => {
-    const savedFilters = JSON.parse(localStorage.getItem("filters")) || filters;
-    setFilters(savedFilters);
-    fetchCharacters(savedFilters);
+    const savedFilters = JSON.parse(localStorage.getItem("filters"));
+
+    if (savedFilters) {
+      setFilters(savedFilters);
+      fetchCharacters(savedFilters);
+    }
   }, []);
 
   useEffect(() => {
-    if (filters !== debouncedFilters) {
-      localStorage.setItem("filters", JSON.stringify(debouncedFilters));
-      fetchCharacters(debouncedFilters);
-    }
+    localStorage.setItem("filters", JSON.stringify(debouncedFilters));
+    fetchCharacters(debouncedFilters);
   }, [debouncedFilters]);
 
   const fetchCharacters = async (filters) => {
